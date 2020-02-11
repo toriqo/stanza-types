@@ -1,0 +1,9 @@
+"private": true,
+    "name": "stanza-types",
+    "version": "0.0.1",
+    "homepage": "https://github.com/toriqo/stanza-types",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/toriqo/stanza-types.git"
+    }
+}

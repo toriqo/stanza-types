@@ -29,6 +29,7 @@ export default class JingleSession {
     role: JingleSessionRole;
     pendingApplicationTypes?: string[];
     pendingAction?: JingleAction;
+    // @ts-ignore
     processingQueue: async.AsyncPriorityQueue<any>;
     private _sessionState;
     private _connectionState;

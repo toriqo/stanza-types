@@ -66,6 +66,6 @@ export interface VCardTempOrg {
     value?: string;
     unit?: string;
 }
-export declare type VCardTempRecord = VCardTempPhoto | VCardTempAddress | VCardTempAddressLabel | VCardTempPhone | VCardTempEmail | VCardTempOrg | VCardTempLogo | VCardTempCategories;
+export declare type VCardTempRecord = VCardTempPhoto | VCardTempAddress | VCardTempAddressLabel | VCardTempPhone | VCardTempEmail | VCardTempOrg | VCardTempLogo | VCardTempCategories | VCardTempField;
 declare const Protocol: DefinitionOptions[];
 export default Protocol;

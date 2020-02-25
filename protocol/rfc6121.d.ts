@@ -39,6 +39,7 @@ export interface RosterItem {
     subscription: RosterSubscription;
     approved?: boolean;
     ask?: boolean;
+    pending?: string;
     groups?: string[];
 }
 declare const Protocol: DefinitionOptions[];

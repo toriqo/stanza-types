@@ -56,7 +56,7 @@ export interface VCardTempCategories {
     type: 'categories';
     value: string[];
 }
-declare type VCardFieldType = 'nickname' | 'birthday' | 'jid' | 'url' | 'title' | 'role' | 'description' | 'sort' | 'revision' | 'uid' | 'productId' | 'note' | 'timezone';
+export declare type VCardFieldType = 'nickname' | 'birthday' | 'jid' | 'url' | 'title' | 'role' | 'description' | 'sort' | 'revision' | 'uid' | 'productId' | 'note' | 'timezone';
 export interface VCardTempField {
     type: VCardFieldType;
     value: string;

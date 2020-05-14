@@ -26,12 +26,14 @@ export interface CreateChildAttributeOptions<T, E = T> extends CreateAttributeOp
     converter?: FieldDefinition<T, E>;
 }
 export interface CreateTextOptions<T, E = T> {
+    emitEmpty?: boolean;
     staticDefault?: T;
     dynamicDefault?: (raw?: string) => T | undefined;
     parseValue(raw: string): T | undefined;
     writeValue(raw: T | E): string;
 }
 export interface CreateChildTextOptions<T, E = T> extends CreateTextOptions<T, E> {
+    emitEmpty?: boolean;
     matchLanguage?: boolean;
     element: string;
     namespace: string | null;
@@ -56,7 +58,7 @@ export declare const textJSON: () => FieldDefinition<JSONData, JSONData>;
 export declare const textBuffer: (encoding?: BufferEncoding) => FieldDefinition<Buffer, string>;
 export declare function languageAttribute(): FieldDefinition<string>;
 export declare const childLanguageAttribute: (namespace: string | null, element: string) => FieldDefinition<string, string>;
-export declare const childText: (namespace: string | null, element: string, defaultValue?: string | undefined) => FieldDefinition<string, string>;
+export declare const childText: (namespace: string | null, element: string, defaultValue?: string | undefined, emitEmpty?: boolean) => FieldDefinition<string, string>;
 export declare const childTextBuffer: (namespace: string | null, element: string, encoding?: BufferEncoding) => FieldDefinition<Buffer, string | Buffer>;
 export declare const childDate: (namespace: string | null, element: string) => FieldDefinition<Date, string | Date>;
 export declare const childInteger: (namespace: string | null, element: string, defaultValue?: number | undefined) => FieldDefinition<number, number>;

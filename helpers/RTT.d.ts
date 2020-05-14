@@ -27,15 +27,16 @@ export declare class DisplayBuffer {
     synced: boolean;
     onStateChange: (state: DisplayBufferState) => void;
     cursorPosition: number;
+    ignoreWaits: boolean;
     private buffer;
+    private timeDeficit;
     private sequenceNumber;
     private actionQueue;
-    private ignoreWaits;
     constructor(onStateChange?: (state: DisplayBufferState) => void, ignoreWaits?: boolean);
     /**
      * The encoded Unicode string to display.
      */
-    readonly text: string;
+    get text(): string;
     /**
      * Mark the RTT message as completed and reset state.
      */
@@ -84,17 +85,17 @@ export declare class DisplayBuffer {
 export declare class InputBuffer {
     onStateChange: (state: InputBufferState) => void;
     resetInterval: number;
-    private ignoreWaits;
+    ignoreWaits: boolean;
+    sequenceNumber: number;
     private isStarting;
     private isReset;
     private buffer;
     private actionQueue;
-    private sequenceNumber;
     private lastActionTime?;
     private lastResetTime?;
     private changedBetweenResets;
     constructor(onStateChange?: (state: InputBufferState) => void, ignoreWaits?: boolean);
-    readonly text: string;
+    get text(): string;
     /**
      * Generate action deltas based on the new full state of the source text.
      *

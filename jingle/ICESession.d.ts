@@ -8,14 +8,13 @@ export default class ICESession extends BaseSession {
     currentBitrate?: number;
     maxRelayBandwidth: number;
     candidateBuffer: Array<{
-        sdpMLineIndex: number;
         sdpMid: string;
         candidate: string;
     } | null>;
     transportType: JingleIce['transportType'];
     restartingIce: boolean;
+    usingRelay: boolean;
     private _maybeRestartingIce;
-    private _firstTimeConnected?;
     constructor(opts: any);
     end(reason?: JingleReasonCondition | JingleReason, silent?: boolean): void;
     restartIce(): Promise<void>;

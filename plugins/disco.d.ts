@@ -1,5 +1,5 @@
 import { Agent } from '../';
-import Disco, { DiscoNodeInfo } from '../DiscoManager';
+import Disco, { DiscoNodeInfo } from '../helpers/DiscoManager';
 import { DiscoInfoResult, DiscoItemsResult, LegacyEntityCaps, ReceivedIQGet } from '../protocol';
 declare module '../' {
     interface Agent {

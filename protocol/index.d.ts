@@ -1,5 +1,6 @@
 import { DefinitionOptions } from '../jxt';
 export * from './rfc3921';
+export * from './rfc4287';
 export * from './rfc6120';
 export * from './rfc6121';
 export * from './rfc7395';

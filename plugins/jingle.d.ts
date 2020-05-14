@@ -4,9 +4,11 @@ import { ExternalServiceCredentials, ExternalServiceList, IQ, Jingle as JingleRe
 declare module '../' {
     interface Agent {
         jingle: Jingle.SessionManager;
-        discoverICEServers(): Promise<RTCIceServer[]>;
-        getServices(jid: string, type?: string): Promise<ExternalServiceList>;
-        getServiceCredentials(jid: string, host: string, type?: string, port?: number): Promise<ExternalServiceCredentials>;
+        discoverICEServers(opts?: {
+            version?: '2' | '1';
+        }): Promise<RTCIceServer[]>;
+        getServices(jid: string, type?: string, version?: '2' | '1'): Promise<ExternalServiceList>;
+        getServiceCredentials(jid: string, host: string, type?: string, port?: number, version?: '2' | '1'): Promise<ExternalServiceCredentials>;
     }
     interface AgentEvents {
         'iq:set:jingle': IQ & {
@@ -22,5 +24,21 @@ declare module '../' {
         'jingle:resumed': (session: Jingle.Session, info?: JingleRequest['info']) => void;
         'jingle:ringing': (session: Jingle.Session, info?: JingleRequest['info']) => void;
     }
+    interface AgentConfig {
+        jingle?: JinglePluginConfig;
+    }
+}
+interface JinglePluginConfig {
+    advertiseAudio?: boolean;
+    advertiseVideo?: boolean;
+    advertiseFileTransfer?: boolean;
+    hasRTCPeerConnection?: boolean;
+    trickleIce: boolean;
+    bundlePolicy?: string;
+    iceTransportPolicy?: string;
+    rtcpMuxPolicy?: string;
+    iceServers?: RTCIceServer[];
+    sdpSemantics?: string;
 }
 export default function (client: Agent): void;
+export {};

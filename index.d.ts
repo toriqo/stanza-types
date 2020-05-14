@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import Client from './Client';
 import * as Constants from './Constants';
 import * as RTT from './helpers/RTT';
+import SM from './helpers/StreamManagement';
 import * as JID from './JID';
 import * as Jingle from './jingle';
 import * as JXT from './jxt';
@@ -11,9 +12,8 @@ import StrictEventEmitter from './lib/StrictEventEmitter';
 import * as Namespaces from './Namespaces';
 import * as Stanzas from './protocol';
 import { CSI, IQ, Message, Presence, SASL, Stream, StreamError, StreamFeatures, StreamManagement } from './protocol';
-import SM from './StreamManagement';
 import * as Utils from './Utils';
-export * from './StreamManagement';
+export * from './helpers/StreamManagement';
 export interface TopLevelElements {
     message: Message;
     iq: IQ;
@@ -36,15 +36,35 @@ export interface AgentEvents {
     'stream:data': (json: any, kind: string) => void;
     'message:sent': (msg: Stanzas.Message, viaCarbon: boolean) => void;
     'message:error': Stanzas.Message;
+    'message:failed': Stanzas.Message;
+    'message:acked': Stanzas.Message;
+    'message:retry': Stanzas.Message;
+    'message:hibernated': Stanzas.Message;
     chat: Stanzas.ReceivedMessage;
     groupchat: Stanzas.ReceivedMessage;
     available: Stanzas.ReceivedPresence;
     unavailable: Stanzas.ReceivedPresence;
+    subscribe: Stanzas.ReceivedPresence;
+    subscribed: Stanzas.ReceivedPresence;
+    unsubscribe: Stanzas.ReceivedPresence;
+    unsubscribed: Stanzas.ReceivedPresence;
+    probe: Stanzas.ReceivedPresence;
+    'presence:error': Stanzas.ReceivedPresence;
     'session:started': string | void;
     'session:prebind': string;
     'session:bound': string;
     'session:end': undefined;
     'stanza:failed': {
+        kind: 'message';
+        stanza: Stanzas.Message;
+    } | {
+        kind: 'presence';
+        stanza: Stanzas.Presence;
+    } | {
+        kind: 'iq';
+        stanza: Stanzas.IQ;
+    };
+    'stanza:hibernated': {
         kind: 'message';
         stanza: Stanzas.Message;
     } | {
@@ -71,6 +91,8 @@ export interface AgentEvents {
     connected: void;
     disconnected?: Error;
     'bosh:terminate': any;
+    '--reset-stream-features': void;
+    '--transport-disconnected': void;
     '*': (...args: any[]) => void;
 }
 export interface Agent extends StrictEventEmitter<EventEmitter, AgentEvents> {
@@ -83,17 +105,28 @@ export interface Agent extends StrictEventEmitter<EventEmitter, AgentEvents> {
     sessionStarted: boolean;
     use(plugin: (agent: Agent, registry: JXT.Registry, config: AgentConfig) => void): void;
     nextId(): string;
+    updateConfig(opts?: AgentConfig): void;
     connect(opts?: AgentConfig): void;
     disconnect(): void;
-    send<T extends keyof TopLevelElements>(path: T, data: TopLevelElements[T]): void;
+    send<T extends keyof TopLevelElements>(path: T, data: TopLevelElements[T]): Promise<void>;
     sendIQ<T = IQ, R = T>(iq: T & IQ): Promise<IQ & R>;
     sendIQResult(orig: IQ, result?: Partial<IQ>): void;
     sendIQError(orig: IQ, err?: Partial<IQ>): void;
-    sendMessage(msg: Message): void;
-    sendPresence(pres?: Presence): void;
+    sendMessage(msg: Message): string;
+    sendPresence(pres?: Presence): string;
     sendStreamError(err: StreamError): void;
 }
 export interface AgentConfig {
+    /**
+     * Allow Stream Management Resumption
+     *
+     * When true (along with useStreamManagement), the session will be resumable after a disconnect.
+     *
+     * However, this means that the session will still appear as alive for a few minutes after a connection loss.
+     *
+     * @default true
+     */
+    allowResumption?: boolean;
     /**
      * User JID
      */
@@ -164,7 +197,7 @@ export interface Transport {
     connect(opts: TransportConfig): void;
     disconnect(): void;
     restart(): void;
-    send(name: string, data?: object): void;
+    send(name: string, data?: object): Promise<void>;
 }
 export interface TransportConfig {
     lang?: string;

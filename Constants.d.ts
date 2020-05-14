@@ -5,7 +5,7 @@ export declare const StreamType: {
     readonly Component: "jabber:component:accept";
     readonly Server: "jabber:server";
 };
-export declare type StreamType = (typeof SASLFailureCondition)[keyof typeof SASLFailureCondition];
+export declare type StreamType = typeof StreamType[keyof typeof StreamType];
 export declare const SASLFailureCondition: {
     readonly AccountDisabled: "account-disabled";
     readonly CredentialsExpired: "credentials-expired";
@@ -18,7 +18,7 @@ export declare const SASLFailureCondition: {
     readonly NotAuthorized: "not-authorized";
     readonly TemporaryAuthFailure: "temporary-auth-failure";
 };
-export declare type SASLFailureCondition = (typeof SASLFailureCondition)[keyof typeof SASLFailureCondition];
+export declare type SASLFailureCondition = typeof SASLFailureCondition[keyof typeof SASLFailureCondition];
 export declare const StreamErrorCondition: {
     readonly BadFormat: "bad-format";
     readonly BadNamespacePrefix: "bad-namespace-prefix";
@@ -46,7 +46,7 @@ export declare const StreamErrorCondition: {
     readonly UnsupportedStanzaType: "unsupported-stanza-type";
     readonly UnsupportedVersion: "unsupported-version";
 };
-export declare type StreamErrorCondition = (typeof StreamErrorCondition)[keyof typeof StreamErrorCondition];
+export declare type StreamErrorCondition = typeof StreamErrorCondition[keyof typeof StreamErrorCondition];
 export declare const StanzaErrorCondition: {
     readonly BadRequest: "bad-request";
     readonly Conflict: "conflict";
@@ -71,7 +71,7 @@ export declare const StanzaErrorCondition: {
     readonly UndefinedCondition: "undefined-condition";
     readonly UnexpectedRequest: "unexpected-request";
 };
-export declare type StanzaErrorCondition = (typeof StanzaErrorCondition)[keyof typeof StanzaErrorCondition];
+export declare type StanzaErrorCondition = typeof StanzaErrorCondition[keyof typeof StanzaErrorCondition];
 export declare const MessageType: {
     readonly Chat: "chat";
     readonly Error: "error";
@@ -79,7 +79,7 @@ export declare const MessageType: {
     readonly Headline: "headline";
     readonly Normal: "normal";
 };
-export declare type MessageType = (typeof MessageType)[keyof typeof MessageType];
+export declare type MessageType = typeof MessageType[keyof typeof MessageType];
 export declare const PresenceType: {
     readonly Available: undefined;
     readonly Error: "error";
@@ -90,21 +90,21 @@ export declare const PresenceType: {
     readonly Unsubscribe: "unsubscribe";
     readonly Unsubscribed: "unsubscribed";
 };
-export declare type PresenceType = (typeof PresenceType)[keyof typeof PresenceType];
+export declare type PresenceType = typeof PresenceType[keyof typeof PresenceType];
 export declare const IQType: {
     readonly Error: "error";
     readonly Get: "get";
     readonly Result: "result";
     readonly Set: "set";
 };
-export declare type IQType = (typeof IQType)[keyof typeof IQType];
+export declare type IQType = typeof IQType[keyof typeof IQType];
 export declare const PresenceShow: {
     readonly Away: "away";
     readonly Chat: "chat";
     readonly DoNotDisturb: "dnd";
     readonly ExtendedAway: "xa";
 };
-export declare type PresenceShow = (typeof PresenceShow)[keyof typeof PresenceShow];
+export declare type PresenceShow = typeof PresenceShow[keyof typeof PresenceShow];
 export declare const RosterSubscription: {
     readonly Both: "both";
     readonly From: "from";
@@ -115,14 +115,14 @@ export declare const RosterSubscription: {
     readonly SendPresenceOnly: "from";
     readonly To: "to";
 };
-export declare type RosterSubscription = (typeof RosterSubscription)[keyof typeof RosterSubscription];
+export declare type RosterSubscription = typeof RosterSubscription[keyof typeof RosterSubscription];
 export declare const DataFormType: {
     readonly Cancel: "cancel";
     readonly Form: "form";
     readonly Result: "result";
     readonly Submit: "submit";
 };
-export declare type DataFormType = (typeof DataFormType)[keyof typeof DataFormType];
+export declare type DataFormType = typeof DataFormType[keyof typeof DataFormType];
 export declare const DataFormFieldType: {
     readonly Boolean: "boolean";
     readonly Fixed: "fixed";
@@ -136,7 +136,7 @@ export declare const DataFormFieldType: {
     readonly TextMultiple: "text-multi";
     readonly TextPrivate: "text-private";
 };
-export declare type DataFormFieldType = (typeof DataFormFieldType)[keyof typeof DataFormFieldType];
+export declare type DataFormFieldType = typeof DataFormFieldType[keyof typeof DataFormFieldType];
 export declare const MUCAffiliation: {
     readonly Admin: "admin";
     readonly Banned: "outcast";
@@ -145,14 +145,14 @@ export declare const MUCAffiliation: {
     readonly Outcast: "outcast";
     readonly Owner: "owner";
 };
-export declare type MUCAffiliation = (typeof MUCAffiliation)[keyof typeof MUCAffiliation];
+export declare type MUCAffiliation = typeof MUCAffiliation[keyof typeof MUCAffiliation];
 export declare const MUCRole: {
     readonly Moderator: "moderator";
     readonly None: "none";
     readonly Participant: "participant";
     readonly Visitor: "visitor";
 };
-export declare type MUCRole = (typeof MUCRole)[keyof typeof MUCRole];
+export declare type MUCRole = typeof MUCRole[keyof typeof MUCRole];
 export declare const MUCStatusCode: {
     readonly AffiliationChanged: "101";
     readonly AffiliationLost: "321";
@@ -174,7 +174,7 @@ export declare const MUCStatusCode: {
     readonly UnavailableMembersListed: "102";
     readonly UnavailableMembersNotListed: "103";
 };
-export declare type MUCStatusCode = (typeof MUCStatusCode)[keyof typeof MUCStatusCode];
+export declare type MUCStatusCode = typeof MUCStatusCode[keyof typeof MUCStatusCode];
 export declare const PubsubErrorCondition: {
     readonly ClosedNode: "closed-node";
     readonly ConfigurationRequired: "configuration-required";
@@ -199,7 +199,7 @@ export declare const PubsubErrorCondition: {
     readonly Unsupported: "unsupported";
     readonly UnsupportedAccessModel: "unsupported-access-model";
 };
-export declare type PubsubErrorCondition = (typeof PubsubErrorCondition)[keyof typeof PubsubErrorCondition];
+export declare type PubsubErrorCondition = typeof PubsubErrorCondition[keyof typeof PubsubErrorCondition];
 export declare const ChatState: {
     readonly Active: "active";
     readonly Composing: "composing";
@@ -207,26 +207,26 @@ export declare const ChatState: {
     readonly Inactive: "inactive";
     readonly Paused: "paused";
 };
-export declare type ChatState = (typeof ChatState)[keyof typeof ChatState];
+export declare type ChatState = typeof ChatState[keyof typeof ChatState];
 export declare const JingleSessionRole: {
     readonly Initiator: "initiator";
     readonly Responder: "responder";
 };
-export declare type JingleSessionRole = (typeof JingleSessionRole)[keyof typeof JingleSessionRole];
+export declare type JingleSessionRole = typeof JingleSessionRole[keyof typeof JingleSessionRole];
 export declare const JingleApplicationDirection: {
     readonly Inactive: "inactive";
     readonly Receive: "recvonly";
     readonly Send: "sendonly";
     readonly SendReceive: "sendrecv";
 };
-export declare type JingleApplicationDirection = (typeof JingleApplicationDirection)[keyof typeof JingleApplicationDirection];
+export declare type JingleApplicationDirection = typeof JingleApplicationDirection[keyof typeof JingleApplicationDirection];
 export declare const JingleContentSenders: {
     readonly Both: "both";
     readonly Initiator: "initiator";
     readonly None: "none";
     readonly Responder: "responder";
 };
-export declare type JingleContentSenders = (typeof JingleContentSenders)[keyof typeof JingleContentSenders];
+export declare type JingleContentSenders = typeof JingleContentSenders[keyof typeof JingleContentSenders];
 export declare const JingleAction: {
     readonly ContentAccept: "content-accept";
     readonly ContentAdd: "content-add";
@@ -244,7 +244,7 @@ export declare const JingleAction: {
     readonly TransportReject: "transport-reject";
     readonly TransportReplace: "transport-replace";
 };
-export declare type JingleAction = (typeof JingleAction)[keyof typeof JingleAction];
+export declare type JingleAction = typeof JingleAction[keyof typeof JingleAction];
 export declare const JingleErrorCondition: {
     readonly OutOfOrder: "out-of-order";
     readonly TieBreak: "tie-break";
@@ -252,7 +252,7 @@ export declare const JingleErrorCondition: {
     readonly UnknownSession: "unknown-session";
     readonly UnsupportedInfo: "unsupported-info";
 };
-export declare type JingleErrorCondition = (typeof JingleErrorCondition)[keyof typeof JingleErrorCondition];
+export declare type JingleErrorCondition = typeof JingleErrorCondition[keyof typeof JingleErrorCondition];
 export declare const JingleReasonCondition: {
     readonly AlternativeSession: "alternative-session";
     readonly Busy: "busy";
@@ -272,7 +272,7 @@ export declare const JingleReasonCondition: {
     readonly UnsupportedApplications: "unsupported-applications";
     readonly UnsupportedTransports: "unsupported-transports";
 };
-export declare type JingleReasonCondition = (typeof JingleReasonCondition)[keyof typeof JingleReasonCondition];
+export declare type JingleReasonCondition = typeof JingleReasonCondition[keyof typeof JingleReasonCondition];
 export declare const USER_MOODS: string[];
 export declare const USER_ACTIVITY_GENERAL: string[];
 export declare const USER_ACTIVITY_SPECIFIC: string[];

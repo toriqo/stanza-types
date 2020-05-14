@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
 import { JingleReasonCondition } from '../Constants';
-import { IQ, Jingle, JingleReason } from '../protocol';
+import { IQ, Jingle, JingleReason, ExternalService } from '../protocol';
 import FileTransferSession from './FileTransferSession';
 import MediaSession from './MediaSession';
 import BaseSession from './Session';
@@ -19,6 +19,7 @@ export interface SessionManagerConfig {
         rtcpMuxPolicy?: string;
         sdpSemantics?: string;
     };
+    hasRTCPeerConnection?: boolean;
     peerConnectionConstraints?: any;
     performTieBreak?: (session: BaseSession, req: IQ & {
         jingle: Jingle;
@@ -26,6 +27,7 @@ export interface SessionManagerConfig {
     prepareSession?: (opts: any, req?: IQ & {
         jingle: Jingle;
     }) => BaseSession | undefined;
+    createPeerConnection?: (session: BaseSession, opts?: RTCConfiguration) => RTCPeerConnection | undefined;
 }
 export default class SessionManager extends EventEmitter {
     selfID?: string;
@@ -43,8 +45,9 @@ export default class SessionManager extends EventEmitter {
     prepareSession: (opts: any, req?: IQ & {
         jingle: Jingle;
     }) => BaseSession | undefined;
+    createPeerConnection: (session: BaseSession, opts?: RTCConfiguration) => RTCPeerConnection | undefined;
     constructor(conf?: SessionManagerConfig);
-    addICEServer(server: RTCIceServer | string): void;
+    addICEServer(server: RTCIceServer | ExternalService | string): void;
     resetICEServers(): void;
     addSession<T extends BaseSession = BaseSession>(session: T): T;
     forgetSession(session: BaseSession): void;

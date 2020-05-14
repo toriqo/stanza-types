@@ -4,7 +4,12 @@ import { PubsubItemContent } from './';
 declare module './' {
     interface Message {
         json?: any;
+        jsonPayloads?: JSONTransfer[];
     }
+}
+export interface JSONTransfer {
+    type: string;
+    data?: any;
 }
 export interface JSONItem extends PubsubItemContent {
     itemType: typeof NS_JSON_0;

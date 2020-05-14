@@ -27,9 +27,9 @@ export interface JingleRtpCodec {
     channels?: number;
     clockRate?: number;
     id: string;
-    maxptime?: string;
+    maxptime?: number;
     name: string;
-    ptime?: string;
+    ptime?: number;
     parameters?: {
         [key: string]: string;
     };

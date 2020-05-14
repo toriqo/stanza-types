@@ -32,10 +32,10 @@ interface StringPrepProfile {
     mappings: Table[];
     prohibited: Table[];
 }
-export declare function prepare(profile: StringPrepProfile, allowUnassigned: boolean, input: string): string;
-export declare function nameprep(str: string, allowUnassigned?: boolean): string;
+export declare function prepare(profile: StringPrepProfile, allowUnassigned: boolean, input?: string): string;
+export declare function nameprep(str?: string, allowUnassigned?: boolean): string;
 export declare const NodePrepProhibited: Table;
-export declare function nodeprep(str: string, allowUnassigned?: boolean): string;
-export declare function resourceprep(str: string, allowUnassigned?: boolean): string;
-export declare function saslprep(str: string, allowUnassigned?: boolean): string;
+export declare function nodeprep(str?: string, allowUnassigned?: boolean): string;
+export declare function resourceprep(str?: string, allowUnassigned?: boolean): string;
+export declare function saslprep(str?: string, allowUnassigned?: boolean): string;
 export {};

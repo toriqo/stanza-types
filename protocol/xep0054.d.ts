@@ -32,21 +32,39 @@ export interface VCardTempLogo {
     mediaType?: string;
     url?: string;
 }
+declare type VCardTempAddressType = 'home' | 'work' | 'domestic' | 'international' | 'postal' | 'parcel';
 export interface VCardTempAddress {
     type: 'address';
+    city?: string;
+    code?: string;
+    country?: string;
+    pobox?: string;
+    preferred?: boolean;
+    region?: string;
+    street?: string;
+    street2?: string;
+    types?: VCardTempAddressType[];
 }
+declare type VCardTempAddressLabelType = 'home' | 'work';
 export interface VCardTempAddressLabel {
     type: 'addressLabel';
+    lines?: string;
+    preferred?: boolean;
+    types?: VCardTempAddressLabelType[];
 }
+declare type VCardTempPhoneType = 'home' | 'work' | 'cell' | 'fax' | 'voice' | 'msg';
 export interface VCardTempPhone {
     type: 'tel';
+    value?: string;
+    preferred?: boolean;
+    types?: VCardTempPhoneType[];
 }
+declare type VCardTempEmailType = 'home' | 'internet' | 'work';
 export interface VCardTempEmail {
     type: 'email';
     value?: string;
-    home?: boolean;
     preferred?: boolean;
-    work?: boolean;
+    types?: VCardTempEmailType[];
 }
 export interface VCardTempJID {
     type: 'jid';
@@ -56,7 +74,7 @@ export interface VCardTempCategories {
     type: 'categories';
     value: string[];
 }
-export declare type VCardFieldType = 'nickname' | 'birthday' | 'jid' | 'url' | 'title' | 'role' | 'description' | 'sort' | 'revision' | 'uid' | 'productId' | 'note' | 'timezone';
+declare type VCardFieldType = 'nickname' | 'birthday' | 'jid' | 'url' | 'title' | 'role' | 'description' | 'sort' | 'revision' | 'uid' | 'productId' | 'note' | 'timezone';
 export interface VCardTempField {
     type: VCardFieldType;
     value: string;
@@ -64,7 +82,7 @@ export interface VCardTempField {
 export interface VCardTempOrg {
     type: 'organization';
     value?: string;
-    unit?: string;
+    units?: string[];
 }
 export declare type VCardTempRecord = VCardTempPhoto | VCardTempAddress | VCardTempAddressLabel | VCardTempPhone | VCardTempEmail | VCardTempOrg | VCardTempLogo | VCardTempCategories | VCardTempField;
 declare const Protocol: DefinitionOptions[];

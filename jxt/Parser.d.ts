@@ -15,26 +15,26 @@ export interface Attributes {
 export interface ParserOptions {
     allowComments?: boolean;
 }
-export declare function parse(data: string, opts?: ParserOptions): XMLElement;
-export default class Parser extends EventEmitter {
+declare class Parser extends EventEmitter {
     private allowComments;
     private attributeName?;
-    private attributeQuote?;
     private attributes?;
-    private endTag;
-    private recordStart?;
-    private remainder?;
-    private selfClosing?;
     private state;
     private tagName?;
     private haveDeclaration;
-    private remainderPos?;
+    private recordBuffer;
     constructor(opts?: ParserOptions);
     write(data: string): void;
     end(data?: string): void;
-    private endRecording;
-    private handleTagOpening;
-    private waitForData;
-    private lookAheadMatch;
-    private lookBehindMatch;
+    private record;
+    private startRecord;
+    private endRecord;
+    private startTag;
+    private addAttribute;
+    private wait;
+    private transition;
+    private notWellFormed;
+    private restrictedXML;
 }
+export declare function parse(data: string, opts?: ParserOptions): XMLElement;
+export default Parser;

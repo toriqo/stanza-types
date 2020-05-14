@@ -1,9 +1,9 @@
 import { JINGLE_INFO_CHECKSUM_5, JINGLE_INFO_RECEIVED_5, JingleSessionRole } from '../Constants';
 import { DefinitionOptions } from '../jxt';
-import { NS_JINGLE_FILE_TRANSFER_5 } from '../Namespaces';
+import { NS_JINGLE_FILE_TRANSFER_4, NS_JINGLE_FILE_TRANSFER_5 } from '../Namespaces';
 import { Hash, HashUsed, JingleApplication, JingleInfo, Thumbnail } from './';
 export interface FileTransferDescription extends JingleApplication {
-    applicationType: typeof NS_JINGLE_FILE_TRANSFER_5;
+    applicationType: typeof NS_JINGLE_FILE_TRANSFER_5 | typeof NS_JINGLE_FILE_TRANSFER_4;
     file: FileDescription;
 }
 export interface FileDescription {
@@ -27,5 +27,5 @@ export interface FileTransferInfo extends JingleInfo {
     name: string;
     file?: FileDescription;
 }
-declare const Protocol: DefinitionOptions[];
+declare let Protocol: DefinitionOptions[];
 export default Protocol;

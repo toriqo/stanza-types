@@ -1,3 +1,4 @@
+import { AsyncPriorityQueue } from 'async';
 import { JingleAction, JingleReasonCondition, JingleSessionRole } from '../Constants';
 import { Jingle, JingleReason } from '../protocol';
 import SessionManager from './SessionManager';
@@ -29,20 +30,21 @@ export default class JingleSession {
     role: JingleSessionRole;
     pendingApplicationTypes?: string[];
     pendingAction?: JingleAction;
-    // @ts-ignore
-    processingQueue: async.AsyncPriorityQueue<any>;
+    processingQueue: AsyncPriorityQueue<any>;
     private _sessionState;
     private _connectionState;
     constructor(opts: SessionOpts);
-    readonly isInitiator: boolean;
-    readonly peerRole: JingleSessionRole;
-    state: string;
-    connectionState: string;
+    get isInitiator(): boolean;
+    get peerRole(): JingleSessionRole;
+    get state(): string;
+    set state(value: string);
+    get connectionState(): string;
+    set connectionState(value: string);
     send(action: JingleAction, data: Partial<Jingle>): void;
     processLocal(name: string, handler: () => Promise<void>): Promise<void>;
     process(action: JingleAction, changes: Jingle, cb: ActionCallback): void;
-    start(next?: ActionCallback): void;
-    accept(next?: ActionCallback): void;
+    start(_next?: ActionCallback): void;
+    accept(_next?: ActionCallback): void;
     cancel(): void;
     decline(): void;
     end(reason?: JingleReasonCondition | JingleReason, silent?: boolean): void;

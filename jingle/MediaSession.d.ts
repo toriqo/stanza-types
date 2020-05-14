@@ -4,10 +4,13 @@ import ICESession from './ICESession';
 import { ActionCallback } from './Session';
 export default class MediaSession extends ICESession {
     offerOptions: any;
+    includesAudio: boolean;
+    includesVideo: boolean;
     private _ringing;
     constructor(opts: any);
-    ringing: boolean;
-    readonly streams: MediaStream[];
+    get ringing(): boolean;
+    set ringing(value: boolean);
+    get streams(): MediaStream[];
     start(opts?: RTCOfferOptions | ActionCallback, next?: ActionCallback): Promise<void>;
     accept(opts?: RTCAnswerOptions | ActionCallback, next?: ActionCallback): Promise<void>;
     end(reason?: JingleReasonCondition | JingleReason, silent?: boolean): void;

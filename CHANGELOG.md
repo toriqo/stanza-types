@@ -1,5 +1,20 @@
 # Change Log
 
+## 12.10.0
+
+-   BOSH and WebSocket transports are now based on Duplex streams.
+-   Stream management state caching may now by async.
+-   Expanded the set of events related to stream management. See [Using Stream Management](./docs/Using_Stream_Management.md). These events are:
+    -   `stanza:hibernated`
+    -   `message:hibernated`
+    -   `message:acked`
+    -   `message:failed`
+    -   `message:retry`
+
+## 12.9.0
+
+-   The default external service discovery namespace was changed to `urn:xmpp:extdisco:2`. Querying using the `:1` namespace can be done with `client.discoverICEServers({ version: '1' })`.
+
 ## 12.0.0
 
 **WARNING:** Unlike many previous major version bumps that were almost entirely backwards compatible, v12 is _not_ backwards compatible. Upgrading to v12 _will_ require modifications in existing code.

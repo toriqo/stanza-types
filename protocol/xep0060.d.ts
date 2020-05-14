@@ -49,6 +49,7 @@ export interface PubsubDefaultConfiguration {
     form?: DataForm;
 }
 export interface PubsubDefaultSubscriptionOptions {
+    node?: string;
     form?: DataForm;
 }
 export interface PubsubSubscribe {

@@ -1,6 +1,6 @@
 import { JID } from '../JID';
 import { DefinitionOptions } from '../jxt';
-import { DataForm } from './';
+import { DataForm, Paging } from './';
 declare module './' {
     interface IQPayload {
         search?: Search;
@@ -14,6 +14,7 @@ export interface Search {
     email?: string;
     items?: SearchResultItem[];
     form?: DataForm;
+    paging?: Paging;
 }
 export interface SearchResultItem {
     jid?: JID;

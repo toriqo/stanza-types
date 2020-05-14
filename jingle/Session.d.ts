@@ -34,12 +34,10 @@ export default class JingleSession {
     private _sessionState;
     private _connectionState;
     constructor(opts: SessionOpts);
-    get isInitiator(): boolean;
-    get peerRole(): JingleSessionRole;
-    get state(): string;
-    set state(value: string);
-    get connectionState(): string;
-    set connectionState(value: string);
+    readonly isInitiator: boolean;
+    readonly peerRole: JingleSessionRole;
+    state(value: string): string;
+    connectionState(value: string): string;
     send(action: JingleAction, data: Partial<Jingle>): void;
     processLocal(name: string, handler: () => Promise<void>): Promise<void>;
     process(action: JingleAction, changes: Jingle, cb: ActionCallback): void;

@@ -36,7 +36,7 @@ export declare class DisplayBuffer {
     /**
      * The encoded Unicode string to display.
      */
-    get text(): string;
+    readonly text: string;
     /**
      * Mark the RTT message as completed and reset state.
      */
@@ -95,7 +95,7 @@ export declare class InputBuffer {
     private lastResetTime?;
     private changedBetweenResets;
     constructor(onStateChange?: (state: InputBufferState) => void, ignoreWaits?: boolean);
-    get text(): string;
+    readonly text: string;
     /**
      * Generate action deltas based on the new full state of the source text.
      *

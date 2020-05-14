@@ -21,9 +21,8 @@ export default class StreamManagement extends EventEmitter {
     private outboundStarted;
     private cacheHandler;
     constructor();
-    get started(): boolean;
-    set started(value: boolean);
-    get resumable(): boolean;
+    started(value: boolean): boolean;
+    readonly resumable: boolean;
     load(opts: SMState): void;
     cache(handler: (data: SMState) => void): void;
     bind(jid: string): Promise<void>;

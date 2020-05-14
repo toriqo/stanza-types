@@ -8,9 +8,8 @@ export default class MediaSession extends ICESession {
     includesVideo: boolean;
     private _ringing;
     constructor(opts: any);
-    get ringing(): boolean;
-    set ringing(value: boolean);
-    get streams(): MediaStream[];
+    ringing(value: boolean): boolean;
+    readonly streams: MediaStream[];
     start(opts?: RTCOfferOptions | ActionCallback, next?: ActionCallback): Promise<void>;
     accept(opts?: RTCAnswerOptions | ActionCallback, next?: ActionCallback): Promise<void>;
     end(reason?: JingleReasonCondition | JingleReason, silent?: boolean): void;
